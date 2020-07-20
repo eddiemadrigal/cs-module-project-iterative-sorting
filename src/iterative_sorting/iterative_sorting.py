@@ -1,4 +1,4 @@
-arr1 = [1, 5, 8, 4, 2, 9, 6, 0, 3, 7]
+arr1 = [1, 5, 8, 4]
 
 for i in range(len(arr1)):
 
@@ -15,10 +15,21 @@ for i in range(len(arr1)):
 
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort(arr):
-    # Your code here
+    n = len(arr)
 
+    for i in range(n-1):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
 
-    return arr
+arr = [63, 5, 11]
+
+bubble_sort(arr)
+
+print("Sorted array is: ")
+
+for i in range(len(arr)):
+    print("%d" %arr[i])
 
 '''
 STRETCH: implement the Counting Sort function below
