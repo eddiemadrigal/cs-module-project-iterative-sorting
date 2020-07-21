@@ -13,23 +13,39 @@ print("Sorted Array")
 for i in range(len(arr1)):
     print("%d" %arr1[i])
 
+
+
+
+
+# =======================================================================
+# =======================================================================
+# =======================================================================
+# =======================================================================
+
+
+
+
 # TO-DO:  implement the Bubble Sort function below
-def bubble_sort(arr):
-    n = len(arr)
+def bubble_sort(arr):                               # define buble_sort function that take arr(ay) as an argument
+    n = len(arr)                                    # get n (the length of arr, so you know how many times to loop)
+    indexing_length = n - 1                         # indexing link of where we are going to make these comparisons
+                                                    # n - 1 because there is no number after to compare
+    sorted = False                                  # keep track of when sorted is done, True
 
-    for i in range(n-1):
-        for j in range(0, n-i-1):
-            if arr[j] > arr[j+1]:
-                arr[j], arr[j+1] = arr[j+1], arr[j]
+    while not sorted:                               # keep looping until sorted = True
+        sorted = True
+        for i in range(0, indexing_length):         # loop for comparison
+            if arr[i] > arr[i+1]:                   # if arr left element is greater than the one on the right
+                sorted = False                      # sorted = False
+                arr[i], arr[i+1] = arr[i+1], arr[i] # swap the elements. when complete, the sorted = False won't activate
 
-arr = [63, 5, 11]
+    return arr
+
+arr = [63, 5, 11, 22, 17, 3, 1, 5, 88, 92]
 
 bubble_sort(arr)
 
-print("Sorted array is: ")
-
-for i in range(len(arr)):
-    print("%d" %arr[i])
+print(bubble_sort(arr))
 
 '''
 STRETCH: implement the Counting Sort function below
