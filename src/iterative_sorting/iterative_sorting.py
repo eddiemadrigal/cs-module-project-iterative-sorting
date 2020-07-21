@@ -1,17 +1,34 @@
-arr1 = [1, 5, 8, 4]
+def quick_sort(sequence):
 
-for i in range(len(arr1)):
+    length = len(sequence)
 
-    min_idx = i
-    for j in range(i + 1, len(arr1)):
-        if arr1[min_idx] > arr1[j]:
-            min_idx = j
+    if length <= 1:
+        return sequence
+    else:
+        pivot = sequence.pop()  # removes and returns the last element
 
-    arr1[i], arr1[min_idx] = arr1[min_idx], arr1[i]
+    items_greater = [] # list that holds items greater than pivot
+    items_lower = [] # list that holds items less than pivot
 
-print("Sorted Array")
-for i in range(len(arr1)):
-    print("%d" %arr1[i])
+    # now we do a comparison on each of items left in the sequence to our pivot point
+    for item in sequence: # for every item left in our sequence
+        print('pivot: ' + str(pivot))
+        if item > pivot: # if the item is greater than the pivot point
+            items_greater.append(item) # append the item to the list that is greater than
+            print('items greater than pivot: ' + str(items_greater))
+        else:
+            items_lower.append(item) # also includes the items that are equal
+            print('items less than pivot: ' + str(items_lower))
+
+    # now, what we need to do is apply this algorithm over and over to each of the sub lists that we create
+    # we'll do this with a return statement.  ie, a return should apply this algorithm again to each of the
+    # of the items lower, we should have that pivot point in the center and we apply the algorithm again
+    # to the items greater. the length of sequence shortens every time; this process repeats until sequence is >= 1
+    return quick_sort(items_lower) + [pivot] + quick_sort(items_greater)
+
+arr = [0, 9, 3, 8, 2, 7, 5]
+
+print(quick_sort(arr))
 
 
 
@@ -28,16 +45,17 @@ for i in range(len(arr1)):
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort(arr):                               # define buble_sort function that take arr(ay) as an argument
     n = len(arr)                                    # get n (the length of arr, so you know how many times to loop)
-    indexing_length = n - 1                         # indexing link of where we are going to make these comparisons
-                                                    # n - 1 because there is no number after to compare
+    indexing_length = n - 1                         # indexing length is 1 less of the arr, as no numbers remain to compare
+                                                    
     sorted = False                                  # keep track of when sorted is done, True
 
     while not sorted:                               # keep looping until sorted = True
-        sorted = True
-        for i in range(0, indexing_length):         # loop for comparison
+        sorted = True                               # once the loop stops, sorted is True, as no False was set
+        for i in range(0, indexing_length):         # for i at position 0, 1, 2, ..., n-1
             if arr[i] > arr[i+1]:                   # if arr left element is greater than the one on the right
-                sorted = False                      # sorted = False
-                arr[i], arr[i+1] = arr[i+1], arr[i] # swap the elements. when complete, the sorted = False won't activate
+                sorted = False                      # set sorted to False
+                arr[i], arr[i+1] = arr[i+1], arr[i] # swap the elements
+                print(str(i + 1) + '. ' + str(arr)) # print the swap
 
     return arr
 
